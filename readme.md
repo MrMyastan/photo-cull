@@ -1,3 +1,5 @@
+A simple python desktop app for culling photos. I made it for myself as I have been taking more and more film photos lately.
+
 TODO:
 
 - [x] Better resizing/layout
