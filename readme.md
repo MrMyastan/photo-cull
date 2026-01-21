@@ -1,0 +1,11 @@
+TODO:
+
+- [x] Better resizing/layout
+- [x] better encapsulation of the elements of the main window
+- [x] zoom, higher quality display of central image
+- [x] arrow key l/r navigation
+- [x] button keep/discard
+- [x] copy to new folder
+- [x] scroll adjustment
+- [ ] fix weird flashes?
+- [ ] prevent zoom out too far
