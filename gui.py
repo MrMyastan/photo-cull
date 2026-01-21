@@ -1,7 +1,7 @@
 import shutil
 import sys
 import os
-
+import cv2
 
 from PySide6.QtCore import QSize, Qt, Signal, QObject, QUrl, QTimer
 from PySide6.QtWidgets import (
@@ -31,6 +31,12 @@ from PySide6.QtGui import (
     QWheelEvent,
     QKeyEvent,
 )
+
+def variance_of_laplacian(image):
+	# compute the Laplacian of the image and then return the focus
+	# measure, which is simply the variance of the Laplacian
+	return cv2.Laplacian(image, cv2.CV_64F).var()
+
 
 class GalleryState(QObject):
     discarded = Signal(str)
@@ -254,6 +260,13 @@ class ImageViewer(QGraphicsView):
         self.image_item.setPixmap(pixmap)
         self.setSceneRect(self.image_item.boundingRect())
         self.fitInView(self.image_item, Qt.AspectRatioMode.KeepAspectRatio) # Fit image in view initially
+
+        image = cv2.imread(filename)
+        if image is None:
+            return
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        fm = variance_of_laplacian(gray)
+        print(f"Focus measure for {filename}: {fm}")
 
     def wheelEvent(self, event: QWheelEvent):
         zoom_factor = 1.05 # Factor to zoom by
