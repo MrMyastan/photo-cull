@@ -118,7 +118,6 @@ class GalleryState(QObject):
             self.selected_id = id
             self.selected.emit(self.selected_id)
         
-
 class ClickableGalleryItem(QLabel):
     # Define a custom signal for when the label is clicked
     clicked = Signal(str)
@@ -245,6 +244,8 @@ class ImageViewer(QGraphicsView):
 
         QTimer.singleShot(0, lambda: self.image_selected(self.gallery.selected_id))
 
+        self.zoom = 0
+
         # self.grabGesture(Qt.GestureType.PinchGesture)
         # self.grabGesture(Qt.GestureType.PanGesture)
 
@@ -259,9 +260,12 @@ class ImageViewer(QGraphicsView):
         if event.angleDelta().y() > 0:
             # Zoom in
             self.scale(zoom_factor, zoom_factor)
+            self.zoom += 1
         else:
             # Zoom out
-            self.scale(1 / zoom_factor, 1 / zoom_factor)
+            if self.zoom > 0:
+                self.scale(1 / zoom_factor, 1 / zoom_factor)
+                self.zoom -= 1
 
         
         # Prevent scrollbar from interfering with zoom

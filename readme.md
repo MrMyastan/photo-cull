@@ -10,4 +10,4 @@ TODO:
 - [x] copy to new folder
 - [x] scroll adjustment
 - [ ] fix weird flashes?
-- [ ] prevent zoom out too far
+- [x] prevent zoom out too far
