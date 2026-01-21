@@ -11,3 +11,4 @@ TODO:
 - [x] scroll adjustment
 - [ ] fix weird flashes?
 - [x] prevent zoom out too far
+- [ ] blurriness likelihood, scene grouping, eye closed identification
