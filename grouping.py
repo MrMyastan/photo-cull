@@ -11,7 +11,7 @@ import shutil
 
 
 MODEL_ID = "facebook/dinov2-base"  # small/base/large models also exist on HF
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "mps" if torch.backends.mps.is_available() else "cpu"
 
 processor = AutoImageProcessor.from_pretrained(MODEL_ID)
 model = AutoModel.from_pretrained(MODEL_ID).to(device)
