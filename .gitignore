@@ -1,2 +1,3 @@
 .venv/
 clusters/
+.DS_Store
